@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Deen Taqwa — Pray More. Lock Distractions.</title>
+<meta name="description" content="Deen Taqwa gently locks your apps at prayer times. Unlock by praying. Build blessed habits, track your streaks, and reconnect with salah." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..900,0..100,0..1&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- Subtle grain overlay -->
+<div class="grain" aria-hidden="true"></div>
+
+<!-- NAV -->
+<header class="nav">
+  <a href="#" class="nav__brand" aria-label="Deen Taqwa home">
+    <svg class="nav__mark" viewBox="0 0 40 40" aria-hidden="true">
+      <circle cx="20" cy="20" r="19" fill="none" stroke="currentColor" stroke-width="1.2"/>
+      <path d="M26 12 a10 10 0 1 0 0 16 a8 8 0 1 1 0 -16 z" fill="currentColor"/>
+      <circle cx="29" cy="15" r="1.3" fill="currentColor"/>
+    </svg>
+    <span class="nav__wordmark">
+      <span class="nav__wordmark-main">Deen Taqwa</span>
+      <span class="nav__wordmark-sub">دين تقوى</span>
+    </span>
+  </a>
+
+  <nav class="nav__links" aria-label="Primary">
+    <a href="#how">How it works</a>
+    <a href="#features">Features</a>
+    <a href="#learning">Learning</a>
+    <a href="#pricing">Pricing</a>
+  </nav>
+
+  <a href="https://apps.apple.com/us/app/deen-taqwa-salah-dhikr/id6758683868" class="nav__cta" target="_blank" rel="noopener">
+    Download
+    <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M4 8h8M8 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero__grid">
+
+    <div class="hero__copy">
+      <div class="eyebrow">
+        <span class="eyebrow__dot"></span>
+        <span>Now on the App Store · v1.1</span>
+      </div>
+
+      <h1 class="hero__title">
+        <span class="hero__title-line">Pray more.</span>
+        <span class="hero__title-line hero__title-line--italic">Lock out</span>
+        <span class="hero__title-line">the noise.</span>
+      </h1>
+
+      <p class="hero__lede">
+        A quiet iPhone companion that gently locks your apps at each salah — and reopens them only after you've prayed. Your phone works <em>for</em> your deen, not against it.
+      </p>
+
+      <div class="hero__ctas">
+        <a href="https://apps.apple.com/us/app/deen-taqwa-salah-dhikr/id6758683868" class="btn btn--primary" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor">
+            <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.08zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
+          </svg>
+          Download on App Store
+        </a>
+        <a href="#how" class="btn btn--ghost">
+          See how it works
+          <svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M4 8h8M8 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+      <div class="hero__stats">
+        <div class="stat">
+          <div class="stat__num">5×</div>
+          <div class="stat__label">daily salah<br/>protection</div>
+        </div>
+        <div class="stat__divider"></div>
+        <div class="stat">
+          <div class="stat__num">114</div>
+          <div class="stat__label">surahs with<br/>translation</div>
+        </div>
+        <div class="stat__divider"></div>
+        <div class="stat">
+          <div class="stat__num">40+</div>
+          <div class="stat__label">authentic<br/>duas</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero__media">
+      <div class="hero__phone">
+        <video autoplay muted loop playsinline poster="assets/hero-prayer.png">
+          <source src="assets/preview.mp4" type="video/mp4">
+        </video>
+        <div class="hero__phone-glow" aria-hidden="true"></div>
+      </div>
+      <figure class="hero__caption">
+        <span class="hero__caption-num">01</span>
+        <span class="hero__caption-text">
+          <em>At-Taqwa</em> <span class="ar">التقوى</span><br/>
+          <span class="hero__caption-meaning">mindfulness of Allah · God-consciousness</span>
+        </span>
+      </figure>
+    </div>
+
+  </div>
+
+  <!-- Running marquee of divine names -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      <span>Ar-Rahman · الرحمن</span>
+      <span>Ar-Raheem · الرحيم</span>
+      <span>Al-Malik · الملك</span>
+      <span>As-Salaam · السلام</span>
+      <span>Al-Mu'min · المؤمن</span>
+      <span>Al-Muhaymin · المهيمن</span>
+      <span>Al-Aziz · العزيز</span>
+      <span>Al-Jabbar · الجبار</span>
+      <span>Al-Khaliq · الخالق</span>
+      <span>Al-Ghaffar · الغفار</span>
+      <span>Al-Wahhab · الوهاب</span>
+      <span>Ar-Razzaq · الرزاق</span>
+      <!-- duplicate for seamless loop -->
+      <span>Ar-Rahman · الرحمن</span>
+      <span>Ar-Raheem · الرحيم</span>
+      <span>Al-Malik · الملك</span>
+      <span>As-Salaam · السلام</span>
+      <span>Al-Mu'min · المؤمن</span>
+      <span>Al-Muhaymin · المهيمن</span>
+      <span>Al-Aziz · العزيز</span>
+      <span>Al-Jabbar · الجبار</span>
+      <span>Al-Khaliq · الخالق</span>
+      <span>Al-Ghaffar · الغفار</span>
+      <span>Al-Wahhab · الوهاب</span>
+      <span>Ar-Razzaq · الرزاق</span>
+    </div>
+  </div>
+</section>
+
+<!-- THE PROBLEM / PROMISE -->
+<section class="quote">
+  <div class="quote__inner">
+    <p class="quote__ar">إِنَّ الصَّلَاةَ تَنْهَىٰ عَنِ الْفَحْشَاءِ وَالْمُنْكَرِ</p>
+    <p class="quote__tr">
+      "Indeed, prayer prohibits immorality and wrongdoing."
+    </p>
+    <p class="quote__cite">— Surah Al-'Ankabut · 29:45</p>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how" class="how">
+  <div class="section-head">
+    <div class="section-head__kicker">
+      <span class="section-head__num">01</span>
+      <span>How it works</span>
+    </div>
+    <h2 class="section-head__title">
+      Three small steps.<br/>
+      <span class="section-head__title--italic">A lifetime of khushu.</span>
+    </h2>
+  </div>
+
+  <div class="steps">
+    <article class="step">
+      <div class="step__num">I</div>
+      <h3 class="step__title">The adhan calls.</h3>
+      <p class="step__body">At each of the five prayer times, your selected apps — Instagram, TikTok, X, whatever pulls you away — quietly lock themselves. No notifications. No guilt trips. Just a closed door.</p>
+    </article>
+
+    <article class="step">
+      <div class="step__num">II</div>
+      <h3 class="step__title">You pray.</h3>
+      <p class="step__body">Unroll your musalla. Make wudu. Face the Qiblah. Take your time. The only way forward is through the salah — just as the Prophet ﷺ taught.</p>
+    </article>
+
+    <article class="step">
+      <div class="step__num">III</div>
+      <h3 class="step__title">Snap. Verified. Unlocked.</h3>
+      <p class="step__body">A quick photo of your prayer spot confirms you prayed. Your phone opens again. Your streak grows. Your heart, insha'Allah, grows with it.</p>
+    </article>
+  </div>
+</section>
+
+<!-- FEATURE ONE — APP LOCK -->
+<section id="features" class="feature feature--light">
+  <div class="feature__grid">
+    <div class="feature__copy">
+      <div class="eyebrow eyebrow--dark">
+        <span class="eyebrow__dot eyebrow__dot--emerald"></span>
+        <span>Feature · Prayer Lock</span>
+      </div>
+      <h2 class="feature__title">
+        Your phone,<br/>
+        <em>finally</em> quiet<br/>
+        at Maghrib.
+      </h2>
+      <p class="feature__body">
+        Deen Taqwa uses iOS Screen Time to temporarily block your distraction apps the moment prayer enters. There's no willpower involved — your phone is simply closed for business. When you've prayed, confirm with a photo of your prayer spot and you're back.
+      </p>
+      <ul class="feature__list">
+        <li><span class="feature__list-dot"></span>Works with Instagram, TikTok, X, YouTube, games, anything you choose</li>
+        <li><span class="feature__list-dot"></span>Adjustable pre-prayer warning from 5 to 30 minutes</li>
+        <li><span class="feature__list-dot"></span>Uses your exact location for accurate salah times</li>
+      </ul>
+    </div>
+
+    <div class="feature__media feature__media--verify">
+      <img src="assets/verify.png" alt="Deen Taqwa prayer verification screen with a photo of a musalla and 'Looks Good' confirmation button" />
+    </div>
+  </div>
+</section>
+
+<!-- FEATURE TWO — DHIKR -->
+<section class="feature feature--dark">
+  <div class="feature__grid feature__grid--reverse">
+    <div class="feature__copy">
+      <div class="eyebrow eyebrow--light">
+        <span class="eyebrow__dot eyebrow__dot--cream"></span>
+        <span>Feature · Daily Dhikr</span>
+      </div>
+      <h2 class="feature__title feature__title--light">
+        Two minutes.<br/>
+        <em>Ninety-nine</em><br/>
+        remembrances.
+      </h2>
+      <p class="feature__body feature__body--light">
+        Once a day, at a time you choose, your phone pauses for dhikr. A verse from the Qur'an. A sincere dua. SubhanAllah, Alhamdulillah, Allahu Akbar — counted with a tap. The kind of small moment that, repeated daily, changes a life.
+      </p>
+      <div class="dhikr-display">
+        <div class="dhikr-row">
+          <span class="dhikr-ar">سُبْحَانَ اللَّٰه</span>
+          <span class="dhikr-tr">SubhanAllah <span class="dhikr-count">33×</span></span>
+        </div>
+        <div class="dhikr-row">
+          <span class="dhikr-ar">الْحَمْدُ لِلَّٰه</span>
+          <span class="dhikr-tr">Alhamdulillah <span class="dhikr-count">33×</span></span>
+        </div>
+        <div class="dhikr-row">
+          <span class="dhikr-ar">اللَّٰهُ أَكْبَر</span>
+          <span class="dhikr-tr">Allahu Akbar <span class="dhikr-count">34×</span></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="feature__media feature__media--hero">
+      <img src="assets/hero-prayer.png" alt="Deen Taqwa prayer lock screen showing next prayer countdown" />
+    </div>
+  </div>
+</section>
+
+<!-- LEARNING SECTION -->
+<section id="learning" class="learning">
+  <div class="section-head section-head--center">
+    <div class="section-head__kicker">
+      <span class="section-head__num">02</span>
+      <span>Quran & Duas</span>
+    </div>
+    <h2 class="section-head__title">
+      The book, the supplications,<br/>
+      <span class="section-head__title--italic">always within reach.</span>
+    </h2>
+  </div>
+
+  <div class="learning__cards">
+    <figure class="learning__card">
+      <div class="learning__phone">
+        <img src="assets/learning.png" alt="Islamic Learning home screen" />
+      </div>
+      <figcaption>
+        <span class="learning__card-num">i.</span>
+        <h3>Explore.</h3>
+        <p>Quran and duas, side by side. The entire Book, 114 surahs, 6,236 ayahs — plus authentic daily supplications organized for every moment of life.</p>
+      </figcaption>
+    </figure>
+
+    <figure class="learning__card">
+      <div class="learning__phone">
+        <img src="assets/quran.png" alt="Full Quran browser with 114 surahs listed" />
+      </div>
+      <figcaption>
+        <span class="learning__card-num">ii.</span>
+        <h3>Read.</h3>
+        <p>Every surah in Arabic with English translation. Marked clearly as Meccan or Medinan. Search by name. Pick up where you left off.</p>
+      </figcaption>
+    </figure>
+
+    <figure class="learning__card">
+      <div class="learning__phone">
+        <img src="assets/duas.png" alt="Duas organized by category: Daily, Prayer Related, Life Events, Forgiveness, Protection" />
+      </div>
+      <figcaption>
+        <span class="learning__card-num">iii.</span>
+        <h3>Supplicate.</h3>
+        <p>Daily duas. Prayer-related adhkar. Life events, forgiveness, protection and guidance — categorized so you always find the right words.</p>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- PROGRESS / STATS -->
+<section class="progress">
+  <div class="progress__inner">
+    <div class="progress__copy">
+      <div class="eyebrow">
+        <span class="eyebrow__dot"></span>
+        <span>Feature · Progress</span>
+      </div>
+      <h2 class="feature__title">
+        The streak that<br/>
+        <em>actually</em><br/>
+        matters.
+      </h2>
+      <p class="feature__body">
+        Every salah logged. Every day counted. Watch consistency become second nature — and your relationship with Allah become the thing that anchors every other part of your day.
+      </p>
+    </div>
+
+    <div class="progress__viz" aria-hidden="true">
+      <div class="streak-grid">
+        <!-- 7 cols x 6 rows = 42 cells, GitHub-style streak -->
+      </div>
+      <div class="streak-legend">
+        <span>Less</span>
+        <span class="streak-sq streak-sq--l0"></span>
+        <span class="streak-sq streak-sq--l1"></span>
+        <span class="streak-sq streak-sq--l2"></span>
+        <span class="streak-sq streak-sq--l3"></span>
+        <span class="streak-sq streak-sq--l4"></span>
+        <span>More</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" class="pricing">
+  <div class="section-head section-head--center">
+    <div class="section-head__kicker">
+      <span class="section-head__num">03</span>
+      <span>Pricing</span>
+    </div>
+    <h2 class="section-head__title">
+      Start free.<br/>
+      <span class="section-head__title--italic">Commit when you're ready.</span>
+    </h2>
+  </div>
+
+  <div class="pricing__cards">
+    <article class="price-card">
+      <div class="price-card__label">Weekly</div>
+      <div class="price-card__amt"><span class="price-card__currency">$</span>4.99<span class="price-card__per">/week</span></div>
+      <p class="price-card__desc">Try it without commitment.</p>
+    </article>
+
+    <article class="price-card price-card--featured">
+      <div class="price-card__ribbon">Best value</div>
+      <div class="price-card__label">Yearly</div>
+      <div class="price-card__amt"><span class="price-card__currency">$</span>59.99<span class="price-card__per">/year</span></div>
+      <p class="price-card__desc">Seven-day free trial. Less than the price of a coffee a month.</p>
+      <a href="https://apps.apple.com/us/app/deen-taqwa-salah-dhikr/id6758683868" class="btn btn--primary btn--full" target="_blank" rel="noopener">Start 7-day free trial</a>
+    </article>
+
+    <article class="price-card">
+      <div class="price-card__label">Monthly</div>
+      <div class="price-card__amt"><span class="price-card__currency">$</span>9.99<span class="price-card__per">/month</span></div>
+      <p class="price-card__desc">Full access, cancel anytime.</p>
+    </article>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="final-cta__inner">
+    <p class="final-cta__ar">وَأَقِمِ الصَّلَاةَ لِذِكْرِي</p>
+    <p class="final-cta__meaning">"And establish prayer for My remembrance." — 20:14</p>
+
+    <h2 class="final-cta__title">
+      Make the next<br/>
+      salah the one<br/>
+      <em>you actually</em><br/>
+      show up for.
+    </h2>
+
+    <a href="https://apps.apple.com/us/app/deen-taqwa-salah-dhikr/id6758683868" class="btn btn--primary btn--large" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="currentColor">
+        <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.08zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
+      </svg>
+      Download on the App Store
+    </a>
+
+    <p class="final-cta__sub">Free download · Premium 7-day trial · iPhone & iPad</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__brand">
+      <span class="footer__mark">
+        <svg viewBox="0 0 40 40" width="28" height="28" aria-hidden="true">
+          <circle cx="20" cy="20" r="19" fill="none" stroke="currentColor" stroke-width="1.2"/>
+          <path d="M26 12 a10 10 0 1 0 0 16 a8 8 0 1 1 0 -16 z" fill="currentColor"/>
+          <circle cx="29" cy="15" r="1.3" fill="currentColor"/>
+        </svg>
+      </span>
+      <div>
+        <div class="footer__wordmark">Deen Taqwa</div>
+        <div class="footer__tag">Built by Muslims, for Muslims.</div>
+      </div>
+    </div>
+
+    <nav class="footer__nav" aria-label="Footer">
+      <a href="https://apps.apple.com/us/app/deen-taqwa-salah-dhikr/id6758683868" target="_blank" rel="noopener">App Store</a>
+      <a href="https://sites.google.com/view/salahlock/privacy-policy" target="_blank" rel="noopener">Privacy</a>
+      <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener">Terms</a>
+    </nav>
+
+    <p class="footer__copy">© 2026 IBRAHIMS ECOM · Made with sincerity, insha'Allah.</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
