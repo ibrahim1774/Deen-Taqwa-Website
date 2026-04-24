@@ -11,6 +11,35 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..900,0..100,0..1&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="styles.css" />
+
+<!-- Wistia — hero video -->
+<script src="https://fast.wistia.com/player.js" async></script>
+<script src="https://fast.wistia.com/embed/umyrhrd9tx.js" async type="module"></script>
+<style>
+  wistia-player[media-id='umyrhrd9tx']:not(:defined) {
+    background: center / cover no-repeat url('https://fast.wistia.com/embed/medias/umyrhrd9tx/swatch');
+    display: block;
+    padding-top: 216.67%;
+  }
+  /* Blend video edges into the hero background, hide any Wistia chrome that slips through */
+  .hero__phone wistia-player {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+  }
+  .hero__phone wistia-player::part(wistia-close),
+  .hero__phone wistia-player::part(wistia-branding),
+  .hero__phone wistia-player::part(wistia-watermark),
+  .hero__phone [class*='w-bottom-bar'],
+  .hero__phone [class*='w-big-play-button'],
+  .hero__phone [class*='w-vulcan'],
+  .hero__phone [class*='w-branding'] {
+    display: none !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+</style>
 </head>
 <body>
 
@@ -96,9 +125,25 @@
 
     <div class="hero__media">
       <div class="hero__phone">
-        <video autoplay muted loop playsinline poster="assets/hero-prayer.png">
-          <source src="assets/preview.mp4" type="video/mp4">
-        </video>
+        <wistia-player
+          media-id="umyrhrd9tx"
+          aspect="0.46153846153846156"
+          autoplay="true"
+          muted="true"
+          loop="true"
+          playbar="false"
+          play-button="false"
+          small-play-button="false"
+          big-play-button="false"
+          fullscreen-button="false"
+          volume-control="false"
+          settings-control="false"
+          playback-rate-control="false"
+          controls-visible-on-load="false"
+          silent-auto-play="true"
+          end-video-behavior="loop"
+          resumable="false">
+        </wistia-player>
         <div class="hero__phone-glow" aria-hidden="true"></div>
       </div>
       <figure class="hero__caption">
