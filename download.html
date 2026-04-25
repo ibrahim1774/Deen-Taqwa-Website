@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Download Deen Taqwa</title>
+<meta name="description" content="Tap to copy the App Store link, paste in Safari, and download Deen Taqwa." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..900,0..100,0..1&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --ink: #0e1612;
+    --cream: #f5f1e8;
+    --emerald: #0e6b4e;
+    --emerald-deep: #084a35;
+    --gold: #c9a961;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { min-height: 100%; }
+  body {
+    background: #0a100d;
+    color: var(--cream);
+    font-family: 'Instrument Sans', -apple-system, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+  em {
+    font-family: 'Fraunces', Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  .dl-page {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 28px 20px 44px;
+  }
+
+  /* Background video — fills the screen */
+  .dl-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    background: #0a100d;
+  }
+  .dl-bg video,
+  .dl-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  .dl-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(10,16,13,0.55) 0%, rgba(10,16,13,0.35) 35%, rgba(10,16,13,0.85) 100%);
+  }
+
+  .dl-back {
+    position: relative;
+    z-index: 2;
+    align-self: flex-start;
+    color: var(--cream);
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    opacity: 0.78;
+    padding: 4px 8px;
+    transition: opacity 0.2s ease;
+  }
+  .dl-back:hover { opacity: 1; }
+
+  .dl-quote {
+    position: relative;
+    z-index: 2;
+    margin-top: 24px;
+    text-align: center;
+    max-width: 640px;
+  }
+  .dl-quote__ar {
+    font-family: 'Amiri', serif;
+    font-size: clamp(1.4rem, 4.5vw, 2rem);
+    color: var(--cream);
+    opacity: 0.85;
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+  .dl-quote__en {
+    font-family: 'Fraunces', Georgia, serif;
+    font-style: italic;
+    font-weight: 350;
+    font-size: clamp(1.5rem, 5vw, 2.4rem);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    color: #ffffff;
+    text-shadow: 0 2px 24px rgba(0,0,0,0.5);
+  }
+  .dl-quote__cite {
+    margin-top: 18px;
+    font-size: 12px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+  }
+
+  .dl-spacer { flex: 1; min-height: 24px; }
+
+  .dl-actions {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 480px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .dl-instructions {
+    text-align: center;
+    color: rgba(245, 241, 232, 0.78);
+    font-size: 13px;
+    letter-spacing: 0.02em;
+    margin-bottom: 4px;
+  }
+  .dl-instructions strong { color: var(--cream); font-weight: 600; }
+
+  /* Tap to copy pill */
+  .dl-copy {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px 16px 14px 20px;
+    background: rgba(245, 241, 232, 0.08);
+    border: 1px solid rgba(245, 241, 232, 0.2);
+    border-radius: 14px;
+    color: var(--cream);
+    font-family: 'JetBrains Mono', 'Menlo', ui-monospace, monospace;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+  .dl-copy:hover { background: rgba(245, 241, 232, 0.12); border-color: rgba(245, 241, 232, 0.32); }
+  .dl-copy:active { transform: scale(0.99); }
+  .dl-copy__url {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: 500;
+  }
+  .dl-copy__action {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    background: var(--cream);
+    color: var(--ink);
+    border-radius: 8px;
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+  .dl-copy.is-copied .dl-copy__action {
+    background: var(--emerald);
+    color: var(--cream);
+  }
+  /* Toggle icon + label between idle and copied states via class */
+  .dl-copy .icon-copied,
+  .dl-copy .label-copied { display: none; }
+  .dl-copy.is-copied .icon-idle,
+  .dl-copy.is-copied .label-idle { display: none; }
+  .dl-copy.is-copied .icon-copied,
+  .dl-copy.is-copied .label-copied { display: inline-flex; }
+
+  /* Direct open button */
+  .dl-open {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 16px 24px;
+    background: var(--cream);
+    color: var(--ink);
+    border-radius: 14px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: -0.01em;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.35);
+  }
+  .dl-open:hover { transform: translateY(-1px); box-shadow: 0 16px 40px rgba(0,0,0,0.45); }
+  .dl-open svg { flex-shrink: 0; }
+
+  .dl-hint {
+    text-align: center;
+    color: rgba(245, 241, 232, 0.55);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  /* Toast for copy confirmation */
+  .dl-toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(120%);
+    background: var(--emerald);
+    color: var(--cream);
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.35);
+    transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+    z-index: 100;
+  }
+  .dl-toast.show { transform: translateX(-50%) translateY(0); }
+</style>
+</head>
+<body>
+
+<div class="dl-page">
+
+  <!-- Background video / poster -->
+  <div class="dl-bg" aria-hidden="true">
+    <video autoplay muted loop playsinline poster="assets/hero-prayer.png">
+      <source src="assets/preview.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <a class="dl-back" href="/">← Back</a>
+
+  <div class="dl-quote">
+    <p class="dl-quote__ar">مَا قُدِّرَ لَكَ سَيَصِلُ إِلَيْكَ وَلَوْ كَانَ بَيْنَ جَبَلَيْنِ</p>
+    <p class="dl-quote__en">
+      What is meant for <em>you</em> will reach you —<br />
+      even between two mountains.
+    </p>
+    <p class="dl-quote__cite">A reminder, before you tap</p>
+  </div>
+
+  <div class="dl-spacer"></div>
+
+  <div class="dl-actions">
+    <p class="dl-instructions">
+      <strong>Tap to copy</strong> the App Store link, then paste it in Safari to download Deen Taqwa.
+    </p>
+
+    <button type="button" class="dl-copy" id="dlCopy" aria-label="Copy App Store link">
+      <span class="dl-copy__url">apps.apple.com/us/app/deen-taqwa-salah-dhikr/id6758683868</span>
+      <span class="dl-copy__action">
+        <svg class="icon-idle" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+        <svg class="icon-copied" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        <span class="label-idle">Copy</span>
+        <span class="label-copied">Copied</span>
+      </span>
+    </button>
+
+    <a class="dl-open" href="https://apps.apple.com/us/app/deen-taqwa-salah-dhikr/id6758683868" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="currentColor">
+        <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.08zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
+      </svg>
+      Open in App Store
+    </a>
+
+    <p class="dl-hint">Or paste the link in Safari · iPhone & iPad</p>
+  </div>
+</div>
+
+<div class="dl-toast" id="dlToast" role="status" aria-live="polite">Link copied — paste in Safari</div>
+
+<script>
+  (function () {
+    var APP_URL = 'https://apps.apple.com/us/app/deen-taqwa-salah-dhikr/id6758683868';
+    var btn = document.getElementById('dlCopy');
+    var toast = document.getElementById('dlToast');
+    var toastTimer;
+
+    function showCopied() {
+      btn.classList.add('is-copied');
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(function () {
+        toast.classList.remove('show');
+        btn.classList.remove('is-copied');
+      }, 2400);
+    }
+
+    function copyLink() {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(APP_URL).then(showCopied).catch(fallbackCopy);
+      } else {
+        fallbackCopy();
+      }
+    }
+
+    function fallbackCopy() {
+      var ta = document.createElement('textarea');
+      ta.value = APP_URL;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); showCopied(); } catch (e) {}
+      document.body.removeChild(ta);
+    }
+
+    btn.addEventListener('click', copyLink);
+  })();
+</script>
+
+</body>
+</html>
