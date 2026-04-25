@@ -3,336 +3,543 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Download Deen Taqwa</title>
-<meta name="description" content="Tap to copy the App Store link, paste in Safari, and download Deen Taqwa." />
+<title>Deen Taqwa — Pray More. Do More. Block Out the Noise.</title>
+<meta name="description" content="Deen Taqwa gently locks your apps at prayer times. Unlock by praying. Build blessed habits, track your streaks, and reconnect with salah." />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..900,0..100,0..1&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
 
+<link rel="stylesheet" href="styles.css" />
+
+<!-- Wistia — hero video -->
+<script src="https://fast.wistia.com/player.js" async></script>
+<script src="https://fast.wistia.com/embed/umyrhrd9tx.js" async type="module"></script>
 <style>
-  :root {
-    --ink: #0e1612;
-    --cream: #f5f1e8;
-    --emerald: #0e6b4e;
-    --emerald-deep: #084a35;
-    --gold: #c9a961;
+  wistia-player[media-id='umyrhrd9tx']:not(:defined) {
+    background: center / cover no-repeat url('https://fast.wistia.com/embed/medias/umyrhrd9tx/swatch');
+    display: block;
+    padding-top: 216.67%;
   }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { min-height: 100%; }
-  body {
-    background: #0a100d;
-    color: var(--cream);
-    font-family: 'Instrument Sans', -apple-system, system-ui, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    line-height: 1.5;
-    overflow-x: hidden;
-  }
-  em {
-    font-family: 'Fraunces', Georgia, serif;
-    font-style: italic;
-    font-weight: 400;
-  }
-
-  .dl-page {
-    position: relative;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 28px 20px 44px;
-  }
-
-  /* Background video — fills the screen */
-  .dl-bg {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    overflow: hidden;
-    background: #0a100d;
-  }
-  .dl-bg video,
-  .dl-bg img {
+  /* Blend video edges into the hero background, hide any Wistia chrome that slips through */
+  .hero__phone wistia-player {
+    display: block;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    object-position: center;
+    background: transparent;
   }
-  .dl-bg::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background:
-      linear-gradient(180deg, rgba(10,16,13,0.55) 0%, rgba(10,16,13,0.35) 35%, rgba(10,16,13,0.85) 100%);
-  }
-
-  .dl-back {
-    position: relative;
-    z-index: 2;
-    align-self: flex-start;
-    color: var(--cream);
-    text-decoration: none;
-    font-size: 13px;
-    letter-spacing: 0.06em;
-    opacity: 0.78;
-    padding: 4px 8px;
-    transition: opacity 0.2s ease;
-  }
-  .dl-back:hover { opacity: 1; }
-
-  .dl-quote {
-    position: relative;
-    z-index: 2;
-    margin-top: 24px;
-    text-align: center;
-    max-width: 640px;
-  }
-  .dl-quote__ar {
-    font-family: 'Amiri', serif;
-    font-size: clamp(1.4rem, 4.5vw, 2rem);
-    color: var(--cream);
-    opacity: 0.85;
-    line-height: 1.6;
-    margin-bottom: 16px;
-  }
-  .dl-quote__en {
-    font-family: 'Fraunces', Georgia, serif;
-    font-style: italic;
-    font-weight: 350;
-    font-size: clamp(1.5rem, 5vw, 2.4rem);
-    line-height: 1.2;
-    letter-spacing: -0.01em;
-    color: #ffffff;
-    text-shadow: 0 2px 24px rgba(0,0,0,0.5);
-  }
-  .dl-quote__cite {
-    margin-top: 18px;
-    font-size: 12px;
-    letter-spacing: 0.32em;
-    text-transform: uppercase;
-    color: var(--gold);
-    font-weight: 500;
-  }
-
-  .dl-spacer { flex: 1; min-height: 24px; }
-
-  .dl-actions {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    max-width: 480px;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-  }
-
-  .dl-instructions {
-    text-align: center;
-    color: rgba(245, 241, 232, 0.78);
-    font-size: 13px;
-    letter-spacing: 0.02em;
-    margin-bottom: 4px;
-  }
-  .dl-instructions strong { color: var(--cream); font-weight: 600; }
-
-  /* Tap to copy pill */
-  .dl-copy {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    padding: 14px 16px 14px 20px;
-    background: rgba(245, 241, 232, 0.08);
-    border: 1px solid rgba(245, 241, 232, 0.2);
-    border-radius: 14px;
-    color: var(--cream);
-    font-family: 'JetBrains Mono', 'Menlo', ui-monospace, monospace;
-    font-size: 13px;
-    cursor: pointer;
-    transition: background 0.2s ease, border-color 0.2s ease;
-    -webkit-tap-highlight-color: transparent;
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-  }
-  .dl-copy:hover { background: rgba(245, 241, 232, 0.12); border-color: rgba(245, 241, 232, 0.32); }
-  .dl-copy:active { transform: scale(0.99); }
-  .dl-copy__url {
-    flex: 1;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    font-weight: 500;
-  }
-  .dl-copy__action {
-    flex-shrink: 0;
+  /* App Store badge above the hero video */
+  .hero__app-badge {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    padding: 6px 10px;
-    background: var(--cream);
-    color: var(--ink);
-    border-radius: 8px;
-    font-family: 'Instrument Sans', sans-serif;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-  }
-  .dl-copy.is-copied .dl-copy__action {
-    background: var(--emerald);
-    color: var(--cream);
-  }
-  /* Toggle icon + label between idle and copied states via class */
-  .dl-copy .icon-copied,
-  .dl-copy .label-copied { display: none; }
-  .dl-copy.is-copied .icon-idle,
-  .dl-copy.is-copied .label-idle { display: none; }
-  .dl-copy.is-copied .icon-copied,
-  .dl-copy.is-copied .label-copied { display: inline-flex; }
-
-  /* Direct open button */
-  .dl-open {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    padding: 16px 24px;
-    background: var(--cream);
-    color: var(--ink);
-    border-radius: 14px;
+    gap: 24px;
+    padding: 22px 36px 22px 28px;
+    margin: 0 auto 24px;
+    background: #0a0a0a;
+    color: #fafafa;
+    border-radius: 22px;
     text-decoration: none;
-    font-weight: 600;
-    font-size: 16px;
-    letter-spacing: -0.01em;
+    font-family: var(--font-sans, 'Instrument Sans', system-ui, sans-serif);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.25);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-    box-shadow: 0 12px 32px rgba(0,0,0,0.35);
+    width: fit-content;
   }
-  .dl-open:hover { transform: translateY(-1px); box-shadow: 0 16px 40px rgba(0,0,0,0.45); }
-  .dl-open svg { flex-shrink: 0; }
-
-  .dl-hint {
-    text-align: center;
-    color: rgba(245, 241, 232, 0.55);
-    font-size: 11px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    margin-top: 4px;
+  .hero__app-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.3);
   }
-
-  /* Toast for copy confirmation */
-  .dl-toast {
-    position: fixed;
-    bottom: 24px;
-    left: 50%;
-    transform: translateX(-50%) translateY(120%);
-    background: var(--emerald);
-    color: var(--cream);
-    padding: 10px 18px;
-    border-radius: 999px;
-    font-size: 13px;
+  .hero__app-badge svg { flex-shrink: 0; }
+  .hero__app-badge-copy {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.05;
+    text-align: left;
+  }
+  .hero__app-badge-line1 {
+    font-size: 22px;
+    letter-spacing: 0.04em;
+    opacity: 0.85;
+  }
+  .hero__app-badge-line2 {
+    font-size: 40px;
     font-weight: 600;
-    box-shadow: 0 12px 32px rgba(0,0,0,0.35);
-    transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
-    z-index: 100;
+    letter-spacing: -0.01em;
   }
-  .dl-toast.show { transform: translateX(-50%) translateY(0); }
+  .hero__media { display: flex; flex-direction: column; align-items: center; }
+  @media (max-width: 640px) {
+    .hero__app-badge { padding: 16px 24px 16px 20px; gap: 18px; border-radius: 18px; }
+    .hero__app-badge svg { width: 42px; height: 42px; }
+    .hero__app-badge-line1 { font-size: 16px; }
+    .hero__app-badge-line2 { font-size: 30px; }
+  }
+
+  /* Sticky Download CTA — always visible, app-store link */
+  body { padding-bottom: 80px; }
+  .sticky-download {
+    position: fixed;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 18px 10px 14px;
+    background: #0a0a0a;
+    color: #fafafa;
+    border-radius: 999px;
+    text-decoration: none;
+    font-family: var(--font-sans, 'Instrument Sans', system-ui, sans-serif);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.32), 0 0 0 1px rgba(255,255,255,0.05);
+    z-index: 100;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  }
+  .sticky-download:hover {
+    transform: translateX(-50%) translateY(-2px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+    background: #1a1a1a;
+  }
+  .sticky-download svg { flex-shrink: 0; }
+  .sticky-download__copy { display: flex; flex-direction: column; line-height: 1.05; text-align: left; }
+  .sticky-download__line1 { font-size: 10px; letter-spacing: 0.04em; opacity: 0.85; }
+  .sticky-download__line2 { font-size: 16px; font-weight: 600; letter-spacing: -0.01em; }
+  .sticky-download__arrow { opacity: 0.7; margin-left: 4px; transition: transform 0.2s ease; }
+  .sticky-download:hover .sticky-download__arrow { transform: translateX(2px); opacity: 1; }
+  @media (max-width: 640px) {
+    body { padding-bottom: 70px; }
+    .sticky-download {
+      left: 12px;
+      right: 12px;
+      transform: none;
+      justify-content: center;
+      padding: 10px 16px;
+    }
+    .sticky-download:hover { transform: translateY(-2px); }
+  }
+  .hero__phone wistia-player::part(wistia-close),
+  .hero__phone wistia-player::part(wistia-branding),
+  .hero__phone wistia-player::part(wistia-watermark),
+  .hero__phone [class*='w-bottom-bar'],
+  .hero__phone [class*='w-big-play-button'],
+  .hero__phone [class*='w-vulcan'],
+  .hero__phone [class*='w-branding'] {
+    display: none !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
 </style>
 </head>
 <body>
 
-<div class="dl-page">
+<!-- Subtle grain overlay -->
+<div class="grain" aria-hidden="true"></div>
 
-  <!-- Background video / poster -->
-  <div class="dl-bg" aria-hidden="true">
-    <video autoplay muted loop playsinline poster="assets/hero-prayer.png">
-      <source src="assets/preview.mp4" type="video/mp4">
-    </video>
+<!-- NAV -->
+<header class="nav">
+  <a href="#" class="nav__brand" aria-label="Deen Taqwa home">
+    <svg class="nav__mark" viewBox="0 0 40 40" aria-hidden="true">
+      <circle cx="20" cy="20" r="19" fill="none" stroke="currentColor" stroke-width="1.2"/>
+      <path d="M26 12 a10 10 0 1 0 0 16 a8 8 0 1 1 0 -16 z" fill="currentColor"/>
+      <circle cx="29" cy="15" r="1.3" fill="currentColor"/>
+    </svg>
+    <span class="nav__wordmark">
+      <span class="nav__wordmark-main">Deen Taqwa</span>
+      <span class="nav__wordmark-sub">دين تقوى</span>
+    </span>
+  </a>
+
+  <nav class="nav__links" aria-label="Primary">
+    <a href="#how">How it works</a>
+    <a href="#features">Features</a>
+    <a href="#learning">Learning</a>
+  </nav>
+
+  <a href="/copy" class="nav__cta" target="_blank" rel="noopener">
+    Download
+    <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M4 8h8M8 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero__grid">
+
+    <div class="hero__copy">
+      <div class="eyebrow">
+        <span class="eyebrow__dot"></span>
+        <span>Now on the App Store · v1.1</span>
+      </div>
+
+      <h1 class="hero__title">
+        <span class="hero__title-line">Pray more.</span>
+        <span class="hero__title-line hero__title-line--italic">Do more.</span>
+        <span class="hero__title-line">Block out the noise.</span>
+      </h1>
+
+      <p class="hero__lede">
+        A quiet iPhone companion that gently locks your apps at each salah — and reopens them only after you've prayed. Your phone works <em>for</em> your deen, not against it.
+      </p>
+
+      <div class="hero__ctas">
+        <a href="/copy" class="btn btn--primary" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor">
+            <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.08zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
+          </svg>
+          Download on App Store
+        </a>
+        <a href="#how" class="btn btn--ghost">
+          See how it works
+          <svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M4 8h8M8 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+      <div class="hero__stats">
+        <div class="stat">
+          <div class="stat__num">5×</div>
+          <div class="stat__label">daily salah<br/>protection</div>
+        </div>
+        <div class="stat__divider"></div>
+        <div class="stat">
+          <div class="stat__num">114</div>
+          <div class="stat__label">surahs with<br/>translation</div>
+        </div>
+        <div class="stat__divider"></div>
+        <div class="stat">
+          <div class="stat__num">40+</div>
+          <div class="stat__label">authentic<br/>duas</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero__media">
+      <a
+        href="/copy"
+        class="hero__app-badge"
+        target="_blank"
+        rel="noopener"
+        aria-label="Download Deen Taqwa on the App Store"
+      >
+        <svg viewBox="0 0 24 24" width="56" height="56" aria-hidden="true" fill="currentColor">
+          <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.08zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
+        </svg>
+        <span class="hero__app-badge-copy">
+          <span class="hero__app-badge-line1">Download on the</span>
+          <span class="hero__app-badge-line2">App Store</span>
+        </span>
+      </a>
+      <div class="hero__phone">
+        <wistia-player
+          media-id="umyrhrd9tx"
+          aspect="0.46153846153846156"
+          autoplay="true"
+          muted="true"
+          loop="true"
+          playbar="false"
+          play-button="false"
+          small-play-button="false"
+          big-play-button="false"
+          fullscreen-button="false"
+          volume-control="false"
+          settings-control="false"
+          playback-rate-control="false"
+          controls-visible-on-load="false"
+          silent-auto-play="true"
+          end-video-behavior="loop"
+          resumable="false">
+        </wistia-player>
+        <div class="hero__phone-glow" aria-hidden="true"></div>
+      </div>
+      <figure class="hero__caption">
+        <span class="hero__caption-num">01</span>
+        <span class="hero__caption-text">
+          <em>At-Taqwa</em> <span class="ar">التقوى</span><br/>
+          <span class="hero__caption-meaning">mindfulness of Allah · God-consciousness</span>
+        </span>
+      </figure>
+    </div>
+
   </div>
 
-  <a class="dl-back" href="/">← Back</a>
+</section>
 
-  <div class="dl-quote">
-    <p class="dl-quote__ar">مَا قُدِّرَ لَكَ سَيَصِلُ إِلَيْكَ وَلَوْ كَانَ بَيْنَ جَبَلَيْنِ</p>
-    <p class="dl-quote__en">
-      What is meant for <em>you</em> will reach you —<br />
-      even between two mountains.
+<!-- THE PROBLEM / PROMISE -->
+<section class="quote">
+  <div class="quote__inner">
+    <p class="quote__ar">إِنَّ الصَّلَاةَ تَنْهَىٰ عَنِ الْفَحْشَاءِ وَالْمُنْكَرِ</p>
+    <p class="quote__tr">
+      "Indeed, prayer prohibits immorality and wrongdoing."
     </p>
-    <p class="dl-quote__cite">A reminder, before you tap</p>
+    <p class="quote__cite">— Surah Al-'Ankabut · 29:45</p>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how" class="how">
+  <div class="section-head">
+    <div class="section-head__kicker">
+      <span class="section-head__num">01</span>
+      <span>How it works</span>
+    </div>
+    <h2 class="section-head__title">
+      Three small steps.<br/>
+      <span class="section-head__title--italic">A lifetime of khushu.</span>
+    </h2>
   </div>
 
-  <div class="dl-spacer"></div>
+  <div class="steps">
+    <article class="step">
+      <div class="step__num">I</div>
+      <h3 class="step__title">The adhan calls.</h3>
+      <p class="step__body">At each of the five prayer times, your selected apps — Instagram, TikTok, X, whatever pulls you away — quietly lock themselves. No notifications. No guilt trips. Just a closed door.</p>
+    </article>
 
-  <div class="dl-actions">
-    <p class="dl-instructions">
-      <strong>Tap to copy</strong> the App Store link, then paste it in Safari to download Deen Taqwa.
-    </p>
+    <article class="step">
+      <div class="step__num">II</div>
+      <h3 class="step__title">You pray.</h3>
+      <p class="step__body">Unroll your musalla. Make wudu. Face the Qiblah. Take your time. The only way forward is through the salah — just as the Prophet ﷺ taught.</p>
+    </article>
 
-    <button type="button" class="dl-copy" id="dlCopy" aria-label="Copy App Store link">
-      <span class="dl-copy__url">apps.apple.com/us/app/deen-taqwa-salah-dhikr/id6758683868</span>
-      <span class="dl-copy__action">
-        <svg class="icon-idle" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-        </svg>
-        <svg class="icon-copied" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <polyline points="20 6 9 17 4 12"></polyline>
-        </svg>
-        <span class="label-idle">Copy</span>
-        <span class="label-copied">Copied</span>
-      </span>
-    </button>
+    <article class="step">
+      <div class="step__num">III</div>
+      <h3 class="step__title">Snap. Verified. Unlocked.</h3>
+      <p class="step__body">A quick photo of your prayer spot confirms you prayed. Your phone opens again. Your streak grows. Your heart, insha'Allah, grows with it.</p>
+    </article>
+  </div>
+</section>
 
-    <a class="dl-open" href="https://apps.apple.com/us/app/deen-taqwa-salah-dhikr/id6758683868" target="_blank" rel="noopener">
+<!-- FEATURE ONE — APP LOCK -->
+<section id="features" class="feature feature--light">
+  <div class="feature__grid">
+    <div class="feature__copy">
+      <div class="eyebrow eyebrow--dark">
+        <span class="eyebrow__dot eyebrow__dot--emerald"></span>
+        <span>Feature · Prayer Lock</span>
+      </div>
+      <h2 class="feature__title">
+        Your phone,<br/>
+        <em>finally</em> quiet<br/>
+        at Maghrib.
+      </h2>
+      <p class="feature__body">
+        Deen Taqwa uses iOS Screen Time to temporarily block your distraction apps the moment prayer enters. There's no willpower involved — your phone is simply closed for business. When you've prayed, confirm with a photo of your prayer spot and you're back.
+      </p>
+      <ul class="feature__list">
+        <li><span class="feature__list-dot"></span>Works with Instagram, TikTok, X, YouTube, games, anything you choose</li>
+        <li><span class="feature__list-dot"></span>Adjustable pre-prayer warning from 5 to 30 minutes</li>
+        <li><span class="feature__list-dot"></span>Uses your exact location for accurate salah times</li>
+      </ul>
+    </div>
+
+    <div class="feature__media feature__media--verify">
+      <img src="assets/focus-lock.png" alt="Deen Taqwa Salah Focus Lock — your apps are now locked until you pray" />
+    </div>
+  </div>
+</section>
+
+<!-- FEATURE TWO — DHIKR -->
+<section class="feature feature--dark">
+  <div class="feature__grid feature__grid--reverse">
+    <div class="feature__copy">
+      <div class="eyebrow eyebrow--light">
+        <span class="eyebrow__dot eyebrow__dot--cream"></span>
+        <span>Feature · Daily Dhikr</span>
+      </div>
+      <h2 class="feature__title feature__title--light">
+        Two minutes.<br/>
+        <em>Ninety-nine</em><br/>
+        remembrances.
+      </h2>
+      <p class="feature__body feature__body--light">
+        Once a day, at a time you choose, your phone pauses for dhikr. A verse from the Qur'an. A sincere dua. SubhanAllah, Alhamdulillah, Allahu Akbar — counted with a tap. The kind of small moment that, repeated daily, changes a life.
+      </p>
+      <div class="dhikr-display">
+        <div class="dhikr-row">
+          <span class="dhikr-ar">سُبْحَانَ اللَّٰه</span>
+          <span class="dhikr-tr">SubhanAllah <span class="dhikr-count">33×</span></span>
+        </div>
+        <div class="dhikr-row">
+          <span class="dhikr-ar">الْحَمْدُ لِلَّٰه</span>
+          <span class="dhikr-tr">Alhamdulillah <span class="dhikr-count">33×</span></span>
+        </div>
+        <div class="dhikr-row">
+          <span class="dhikr-ar">اللَّٰهُ أَكْبَر</span>
+          <span class="dhikr-tr">Allahu Akbar <span class="dhikr-count">34×</span></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="feature__media feature__media--hero">
+      <img src="assets/dhikr-journey.png" alt="Deen Taqwa Dhikr Journey — Quran verse, daily dua, and the three remembrances counted with taps" />
+    </div>
+  </div>
+</section>
+
+<!-- LEARNING SECTION -->
+<section id="learning" class="feature feature--light">
+  <div class="feature__grid feature__grid--reverse">
+    <div class="feature__copy">
+      <div class="eyebrow eyebrow--dark">
+        <span class="eyebrow__dot eyebrow__dot--emerald"></span>
+        <span>Feature · Learning</span>
+      </div>
+      <h2 class="feature__title">
+        The book,<br/>
+        the <em>supplications</em>,<br/>
+        always within reach.
+      </h2>
+      <p class="feature__body">
+        Open Deen Taqwa's Learning tab and you'll find exactly two doors, nothing more. The entire Qur'an — 114 surahs, 6,236 ayahs — and a curated library of authentic duas for every occasion. No ads. No clutter. Just the words, ready when you are.
+      </p>
+      <ul class="feature__list">
+        <li><span class="feature__list-dot"></span><strong>Quran</strong> — the complete Book with English translation, marked Meccan or Medinan</li>
+        <li><span class="feature__list-dot"></span><strong>Duas</strong> — daily supplications and adhkar for every occasion</li>
+        <li><span class="feature__list-dot"></span>Pick up where you left off, every time</li>
+      </ul>
+    </div>
+
+    <div class="feature__media feature__media--hero">
+      <img src="assets/learning.png" alt="Deen Taqwa Islamic Learning screen — Quran and Duas in one clean view" />
+    </div>
+  </div>
+</section>
+
+<!-- PROGRESS / STATS -->
+<section class="progress">
+  <div class="progress__inner">
+    <div class="progress__copy">
+      <div class="eyebrow">
+        <span class="eyebrow__dot"></span>
+        <span>Feature · Progress</span>
+      </div>
+      <h2 class="feature__title">
+        The streak that<br/>
+        <em>actually</em><br/>
+        matters.
+      </h2>
+      <p class="feature__body">
+        Every salah logged. Every day counted. Watch consistency become second nature — and your relationship with Allah become the thing that anchors every other part of your day.
+      </p>
+    </div>
+
+    <div class="progress__viz">
+      <div class="progress__phone">
+        <img src="assets/progress.png" alt="Deen Taqwa progress screen — total prayers completed, day streak, and weekly milestones" />
+      </div>
+      <div class="streak-grid" aria-hidden="true">
+        <!-- 7 cols x 6 rows = 42 cells, GitHub-style streak -->
+      </div>
+      <div class="streak-legend" aria-hidden="true">
+        <span>Less</span>
+        <span class="streak-sq streak-sq--l0"></span>
+        <span class="streak-sq streak-sq--l1"></span>
+        <span class="streak-sq streak-sq--l2"></span>
+        <span class="streak-sq streak-sq--l3"></span>
+        <span class="streak-sq streak-sq--l4"></span>
+        <span>More</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REFLECT SECTION -->
+<section class="feature feature--dark">
+  <div class="feature__grid">
+    <div class="feature__copy">
+      <div class="eyebrow eyebrow--light">
+        <span class="eyebrow__dot eyebrow__dot--cream"></span>
+        <span>Feature · Reflect</span>
+      </div>
+      <h2 class="feature__title feature__title--light">
+        End each day<br/>
+        <em>with a question</em><br/>
+        worth answering.
+      </h2>
+      <p class="feature__body feature__body--light">
+        A single prompt. A place to say what you're grateful for, what weighed on you, how your heart felt today. Small honest entries, kept private, add up to the kind of self-awareness Islam has always asked of us.
+      </p>
+      <ul class="feature__list">
+        <li><span class="feature__list-dot"></span>One gentle prompt a day — never more</li>
+        <li><span class="feature__list-dot"></span>Track how you're feeling with a single tap</li>
+        <li><span class="feature__list-dot"></span>Your reflections stay on your device. Yours alone.</li>
+      </ul>
+    </div>
+
+    <div class="feature__media feature__media--hero">
+      <img src="assets/reflect.png" alt="Deen Taqwa Reflect screen — mood check-in and a daily gratitude prompt" />
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="final-cta__inner">
+    <p class="final-cta__ar">وَأَقِمِ الصَّلَاةَ لِذِكْرِي</p>
+    <p class="final-cta__meaning">"And establish prayer for My remembrance." — 20:14</p>
+
+    <h2 class="final-cta__title">
+      Make the next<br/>
+      salah the one<br/>
+      <em>you actually</em><br/>
+      show up for.
+    </h2>
+
+    <a href="/copy" class="btn btn--primary btn--large" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="currentColor">
         <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.08zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
       </svg>
-      Open in App Store
+      Download on the App Store
     </a>
 
-    <p class="dl-hint">Or paste the link in Safari · iPhone & iPad</p>
+    <p class="final-cta__sub">Free download · Premium 7-day trial · iPhone & iPad</p>
   </div>
-</div>
+</section>
 
-<div class="dl-toast" id="dlToast" role="status" aria-live="polite">Link copied — paste in Safari</div>
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__brand">
+      <span class="footer__mark">
+        <svg viewBox="0 0 40 40" width="28" height="28" aria-hidden="true">
+          <circle cx="20" cy="20" r="19" fill="none" stroke="currentColor" stroke-width="1.2"/>
+          <path d="M26 12 a10 10 0 1 0 0 16 a8 8 0 1 1 0 -16 z" fill="currentColor"/>
+          <circle cx="29" cy="15" r="1.3" fill="currentColor"/>
+        </svg>
+      </span>
+      <div>
+        <div class="footer__wordmark">Deen Taqwa</div>
+        <div class="footer__tag">Built by Muslims, for Muslims.</div>
+      </div>
+    </div>
 
-<script>
-  (function () {
-    var APP_URL = 'https://apps.apple.com/us/app/deen-taqwa-salah-dhikr/id6758683868';
-    var btn = document.getElementById('dlCopy');
-    var toast = document.getElementById('dlToast');
-    var toastTimer;
+    <nav class="footer__nav" aria-label="Footer">
+      <a href="/copy" target="_blank" rel="noopener">App Store</a>
+      <a href="https://sites.google.com/view/salahlock/privacy-policy" target="_blank" rel="noopener">Privacy</a>
+      <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener">Terms</a>
+    </nav>
 
-    function showCopied() {
-      btn.classList.add('is-copied');
-      toast.classList.add('show');
-      clearTimeout(toastTimer);
-      toastTimer = setTimeout(function () {
-        toast.classList.remove('show');
-        btn.classList.remove('is-copied');
-      }, 2400);
-    }
+    <p class="footer__copy">© 2026 IBRAHIMS ECOM · Made with sincerity, insha'Allah.</p>
+  </div>
+</footer>
 
-    function copyLink() {
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(APP_URL).then(showCopied).catch(fallbackCopy);
-      } else {
-        fallbackCopy();
-      }
-    }
+<!-- Sticky Download CTA -->
+<a
+  href="/copy"
+  class="sticky-download"
+  target="_blank"
+  rel="noopener"
+  aria-label="Download Deen Taqwa on the App Store"
+>
+  <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="currentColor">
+    <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.08zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
+  </svg>
+  <span class="sticky-download__copy">
+    <span class="sticky-download__line1">Get it on the</span>
+    <span class="sticky-download__line2">App Store</span>
+  </span>
+  <svg class="sticky-download__arrow" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+    <path d="M4 8h8M8 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</a>
 
-    function fallbackCopy() {
-      var ta = document.createElement('textarea');
-      ta.value = APP_URL;
-      ta.style.position = 'fixed';
-      ta.style.opacity = '0';
-      document.body.appendChild(ta);
-      ta.select();
-      try { document.execCommand('copy'); showCopied(); } catch (e) {}
-      document.body.removeChild(ta);
-    }
-
-    btn.addEventListener('click', copyLink);
-  })();
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
